@@ -56,7 +56,7 @@ body {
     height: 3.2rem;
 }
 
-/* KAPCSOLAT ŰRLAP – (ha később kell külön, most nem használod) */
+/* KAPCSOLAT ŰRLAP */
 
 .contact-form {
     margin-top: 2rem;
@@ -1463,6 +1463,184 @@ body {
 .back-to-top.visible {
     opacity: 1;
     pointer-events: auto;
+}
+
+/* ================================
+   ORANGE SZEKCIÓ – FUNKCIÓK + STATOK + ÁRAK + JÁRMŰVEK
+   ================================ */
+
+.orange-features {
+    background: #ffffff;
+    padding: 3rem 1rem 4rem;
+}
+
+.orange-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+    gap: 2.5rem;
+    align-items: flex-start;
+}
+
+/* bal oldali lista */
+
+.orange-left {
+    font-size: 0.95rem;
+}
+
+.orange-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.orange-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+    padding: 0.45rem 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+    color: #374151;
+}
+
+.orange-list li::before {
+    content: "";
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    margin-top: 0.35rem;
+    background: #ff7a00;
+    flex-shrink: 0;
+}
+
+/* jobb oldali statok, árak, járművek */
+
+.orange-stats {
+    text-align: center;
+}
+
+.orange-top-label {
+    color: #ff7a00;
+    font-weight: 700;
+    margin-bottom: 0.2rem;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 0.12em;
+}
+
+.orange-big-number {
+    font-size: 2.4rem;
+    font-weight: 800;
+    color: #ea580c;
+    margin-bottom: 0.3rem;
+}
+
+.orange-sub {
+    font-size: 0.9rem;
+    color: #4b5563;
+    margin-bottom: 2rem;
+}
+
+/* árak */
+
+.orange-pricing {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2.5rem;
+}
+
+.orange-price-card h4 {
+    font-size: 0.95rem;
+    font-weight: 700;
+    margin-bottom: 0.3rem;
+}
+
+.orange-price {
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: #b91c1c;
+}
+
+.orange-note {
+    font-size: 0.75rem;
+    color: #6b7280;
+}
+
+/* jármű kategóriák */
+
+.orange-category-title {
+    font-size: 1.05rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+}
+
+.orange-vehicles {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1.3rem;
+}
+
+.orange-vehicle {
+    text-align: center;
+}
+
+.orange-vehicle-img {
+    width: 100%;
+    height: 110px;
+    border-radius: 10px;
+    background-size: cover;
+    background-position: center;
+    margin-bottom: 0.6rem;
+    box-shadow: 0 10px 22px rgba(15, 23, 42, 0.18);
+    background-color: #e5e7eb;
+}
+
+/* ide majd beteheted a saját képeidet vagy ikonjaidat */
+.orange-vehicle-img.motor {
+    background-image: url("motor.jpg");
+}
+
+.orange-vehicle-img.auto {
+    background-image: url("auto.jpg");
+}
+
+.orange-vehicle-img.puttony {
+    background-image: url("puttony.jpg");
+}
+
+.orange-vehicle-img.teher {
+    background-image: url("teher.jpg");
+}
+
+.orange-vehicle-label {
+    display: inline-block;
+    background: #ff7a00;
+    color: #fff;
+    font-weight: 800;
+    font-size: 0.8rem;
+    padding: 0.3rem 0.8rem;
+    border-radius: 999px;
+}
+
+/* RESPONSIVE – ORANGE SZEKCIÓ */
+
+@media (max-width: 1024px) {
+    .orange-inner {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 650px) {
+    .orange-pricing {
+        grid-template-columns: 1fr;
+    }
+
+    .orange-vehicles {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
 }
 
 /* RESPONSIVE */

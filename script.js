@@ -8,161 +8,174 @@ if (navToggle && navLinks) {
     });
 }
 
-// SLIDER LOGIKA
+// HERO SLIDER
 const slides = Array.from(document.querySelectorAll(".slide"));
 const prevBtn = document.getElementById("prevSlide");
 const nextBtn = document.getElementById("nextSlide");
 const dotsContainer = document.getElementById("sliderDots");
 
-let currentIndex = 0;
-let autoTimer = null;
+let currentSlide = 0;
+let slideIntervalId = null;
 
-// pöttyök létrehozása
-if (dotsContainer && slides.length) {
+function renderDots() {
+    if (!dotsContainer || !slides.length) return;
+    dotsContainer.innerHTML = "";
     slides.forEach((_, index) => {
         const dot = document.createElement("button");
-        dot.classList.add("slider-dot");
-        if (index === 0) dot.classList.add("active");
-        dot.setAttribute("aria-label", `Ugrás a ${index + 1}. diára`);
+        dot.className = "slider-dot" + (index === currentSlide ? " active" : "");
+        dot.setAttribute("type", "button");
         dot.addEventListener("click", () => goToSlide(index));
         dotsContainer.appendChild(dot);
     });
 }
 
-const dots = Array.from(document.querySelectorAll(".slider-dot"));
-
 function updateSlides() {
-    slides.forEach((slide, i) => {
-        slide.classList.toggle("active", i === currentIndex);
+    slides.forEach((slide, index) => {
+        slide.classList.toggle("active", index === currentSlide);
     });
-    dots.forEach((dot, i) => {
-        dot.classList.toggle("active", i === currentIndex);
-    });
+    if (dotsContainer) {
+        const allDots = dotsContainer.querySelectorAll(".slider-dot");
+        allDots.forEach((dot, index) => {
+            dot.classList.toggle("active", index === currentSlide);
+        });
+    }
 }
 
 function goToSlide(index) {
     if (!slides.length) return;
-    currentIndex = (index + slides.length) % slides.length;
+    currentSlide = (index + slides.length) % slides.length;
     updateSlides();
-    restartAuto();
 }
 
-function nextSlide() {
-    goToSlide(currentIndex + 1);
+function nextSlideFn() {
+    goToSlide(currentSlide + 1);
 }
 
 function prevSlideFn() {
-    goToSlide(currentIndex - 1);
+    goToSlide(currentSlide - 1);
 }
 
-if (prevBtn && nextBtn) {
+if (prevBtn) {
     prevBtn.addEventListener("click", prevSlideFn);
-    nextBtn.addEventListener("click", nextSlide);
 }
-
-// automatikus váltás
-function startAuto() {
-    if (!slides.length) return;
-    autoTimer = setInterval(nextSlide, 7000);
-}
-
-function restartAuto() {
-    clearInterval(autoTimer);
-    startAuto();
+if (nextBtn) {
+    nextBtn.addEventListener("click", nextSlideFn);
 }
 
 if (slides.length) {
-    startAuto();
+    renderDots();
+    updateSlides();
+    slideIntervalId = setInterval(nextSlideFn, 7000);
 }
 
-/* --- KALKULÁTOR --- */
-
+// PRICE CALCULATOR – egyszerű becslés
 const priceForm = document.getElementById("priceCalc");
-const distInput = document.getElementById("distInput");
-const weightInput = document.getElementById("weightInput");
-const priceResult = document.getElementById("priceResult");
-
 if (priceForm) {
+    const distInput = document.getElementById("distInput");
+    const weightInput = document.getElementById("weightInput");
+    const priceResult = document.getElementById("priceResult");
+
     priceForm.addEventListener("submit", (e) => {
         e.preventDefault();
-        const dist = Number(distInput.value || 0);
-        const weight = Number(weightInput.value || 0);
-        const type =
-            priceForm.querySelector('input[name="ptype"]:checked')?.value;
 
-        if (!dist || !weight || !type) {
-            priceResult.textContent = "Becsült ár: – (tölts ki minden mezőt)";
-            return;
+        const distance = distInput ? Number(distInput.value) || 0 : 0;
+        const weight = weightInput ? Number(weightInput.value) || 0 : 0;
+
+        let type = "standard";
+        const typeInput = priceForm.querySelector('input[name="ptype"]:checked');
+        if (typeInput) {
+            type = typeInput.value;
         }
 
-        let base = 1500 + dist * 40 + weight * 30;
+        // alapdíj és km / kg szorzók – tájékoztató jellegűek
+        let base = 1290;
+        let perKm = 95;
+        let perKg = 40;
 
-        if (type === "fragile") base *= 1.25;
-        if (type === "express") base *= 1.4;
+        if (type === "fragile") {
+            base += 600;
+            perKm += 20;
+            perKg += 15;
+        } else if (type === "express") {
+            base += 900;
+            perKm += 40;
+            perKg += 25;
+        }
 
-        priceResult.textContent = `Becsült ár: ${Math.round(base)} Ft + áfa`;
+        const estimated = Math.round(base + distance * perKm + weight * perKg);
+        const formatted = estimated.toLocaleString("hu-HU");
+
+        if (priceResult) {
+            priceResult.textContent = `Becsült ár: ${formatted} Ft + áfa`;
+        }
     });
 }
 
-/* --- AJTÓTÓL AJTÓIG TABOK --- */
+// AJTÓTÓL AJTÓIG – TABOK
+const tabButtons = document.querySelectorAll(".d2d-tab");
+const tabPanels = document.querySelectorAll(".d2d-panel");
 
-const d2dTabs = document.querySelectorAll(".d2d-tab");
-const d2dPanels = document.querySelectorAll(".d2d-panel");
+if (tabButtons.length && tabPanels.length) {
+    tabButtons.forEach((btn) => {
+        btn.addEventListener("click", () => {
+            const target = btn.getAttribute("data-tab");
+            if (!target) return;
 
-d2dTabs.forEach((tab) => {
-    tab.addEventListener("click", () => {
-        const target = tab.getAttribute("data-tab");
-        d2dTabs.forEach((t) => t.classList.remove("active"));
-        tab.classList.add("active");
+            tabButtons.forEach((b) => b.classList.remove("active"));
+            tabPanels.forEach((panel) => panel.classList.remove("active"));
 
-        d2dPanels.forEach((panel) => {
-            panel.classList.toggle("active", panel.id === `tab-${target}`);
+            btn.classList.add("active");
+            const panelToShow = document.getElementById(`tab-${target}`);
+            if (panelToShow) {
+                panelToShow.classList.add("active");
+            }
         });
     });
-});
+}
 
-/* --- ÉRTÉKELÉSEK SLIDER --- */
-
+// ÉRTÉKELÉSEK – SLIDER
 const testiTrack = document.getElementById("testiTrack");
 const testiPrev = document.getElementById("testiPrev");
 const testiNext = document.getElementById("testiNext");
 
 if (testiTrack && testiPrev && testiNext) {
-    const testiCards = Array.from(testiTrack.children);
+    const testiCards = testiTrack.querySelectorAll(".testi-card");
     let testiIndex = 0;
 
-    function updateTesti() {
-        const cardWidth = testiCards[0].offsetWidth + 16; // kártya + rés
+    function updateTestiSlider() {
+        const cardWidth = testiCards[0].offsetWidth + 16; // kártya + gap
         testiTrack.style.transform = `translateX(-${testiIndex * cardWidth}px)`;
     }
 
     testiPrev.addEventListener("click", () => {
-        testiIndex = Math.max(0, testiIndex - 1);
-        updateTesti();
+        testiIndex = Math.max(testiIndex - 1, 0);
+        updateTestiSlider();
     });
 
     testiNext.addEventListener("click", () => {
-        const maxIndex = Math.max(0, testiCards.length - 2);
-        testiIndex = Math.min(maxIndex, testiIndex + 1);
-        updateTesti();
+        const visibleCount =
+            Math.floor(testiTrack.parentElement.offsetWidth / (testiCards[0].offsetWidth + 16));
+        const maxIndex = Math.max(testiCards.length - visibleCount, 0);
+        testiIndex = Math.min(testiIndex + 1, maxIndex);
+        updateTestiSlider();
     });
 
-    window.addEventListener("resize", updateTesti);
+    window.addEventListener("resize", updateTestiSlider);
+    updateTestiSlider();
 }
 
-/* --- GYIK / FAQ TOGGLE --- */
-
+// FAQ – LENYITHATÓ BLOKKOK
 const faqItems = document.querySelectorAll(".faq-item");
 
 faqItems.forEach((item) => {
     const btn = item.querySelector(".faq-question");
+    if (!btn) return;
     btn.addEventListener("click", () => {
         item.classList.toggle("open");
     });
 });
 
-/* --- VISSZA A TETEJÉRE GOMB --- */
-
+// VISSZA A TETEJÉRE GOMB
 const backToTopBtn = document.getElementById("backToTop");
 
 if (backToTopBtn) {
@@ -183,8 +196,58 @@ if (backToTopBtn) {
 }
 
 /* --- FOOTER ÉV --- */
-
 const footerYearSpan = document.getElementById("footerYear");
 if (footerYearSpan) {
     footerYearSpan.textContent = new Date().getFullYear();
+}
+
+/* --- SZÁMLÁLÓ ANIMÁCIÓ – +1,254,826 db --- */
+
+const counterElements = document.querySelectorAll("[data-counter-target]");
+
+function animateCounter(el) {
+    if (!el) return;
+    if (el.dataset.counterDone === "1") return;
+
+    const target = Number(el.dataset.counterTarget || 0);
+    if (!target) return;
+
+    el.dataset.counterDone = "1";
+
+    const duration = 2000; // ms
+    const start = performance.now();
+
+    function step(now) {
+        const progress = Math.min((now - start) / duration, 1);
+        const value = Math.floor(target * progress);
+        const formatted = value.toLocaleString("en-US"); // 1,254,826 formátum
+        el.textContent = `+${formatted} db`;
+
+        if (progress < 1) {
+            requestAnimationFrame(step);
+        }
+    }
+
+    requestAnimationFrame(step);
+}
+
+if (counterElements.length) {
+    if ("IntersectionObserver" in window) {
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        animateCounter(entry.target);
+                        observer.unobserve(entry.target);
+                    }
+                });
+            },
+            { threshold: 0.4 }
+        );
+
+        counterElements.forEach((el) => observer.observe(el));
+    } else {
+        // nagyon régi böngészők
+        counterElements.forEach((el) => animateCounter(el));
+    }
 }
