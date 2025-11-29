@@ -1238,18 +1238,92 @@ body {
     gap: 2rem;
 }
 
+/* ÚJ WEBSHOP ILLUSZTRÁCIÓ – „dashboard” kártya */
 .webshop-ill {
-    border-radius: 100%;
-    width: 210px;
-    height: 210px;
-    background: radial-gradient(circle at 30% 20%, #fff 0, #ffeb8a 45%, #facc15 70%);
-    margin: auto;
     position: relative;
-    color: var(--navy-dark);
+    width: 100%;
+    max-width: 320px;
+    aspect-ratio: 4 / 3;
+    margin: auto;
+    border-radius: 22px;
+    background: linear-gradient(135deg, #0b2143, #1f3a6d);
+    box-shadow: 0 18px 45px rgba(15, 23, 42, 0.45);
+    padding: 1.1rem 1.2rem;
+    overflow: hidden;
+    color: #fff;
     display: flex;
-    align-items: center;
-    justify-content: center;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 0.8rem;
+    font-size: 0.8rem;
 }
+
+/* halvány grid háttér */
+.webshop-ill::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(circle at 0 0, rgba(255,255,255,0.22) 0, transparent 55%),
+                      linear-gradient(120deg, rgba(255,255,255,0.06) 1px, transparent 1px);
+    background-size: auto, 24px 24px;
+    opacity: 0.9;
+}
+
+/* „Aznapi kézbesítés” badge */
+.webshop-ill::after {
+    content: "Aznapi kézbesítés";
+    position: absolute;
+    top: 0.9rem;
+    left: 1rem;
+    padding: 0.25rem 0.7rem;
+    border-radius: 999px;
+    background: #fbbf24;
+    color: #111827;
+    font-weight: 800;
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+/* belső tartalom – a truck ikon maradhat, csak kisebb lesz */
+.webshop-ill .icon {
+    position: relative;
+    z-index: 1;
+    width: 2.2rem;
+    height: 2.2rem;
+    padding: 0.55rem;
+    border-radius: 999px;
+    background: rgba(15, 23, 42, 0.9);
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.45);
+}
+
+/* kis státuszkártyák jobb alsó sarokban */
+.webshop-ill .status-card {
+    position: relative;
+    z-index: 1;
+    background: rgba(15, 23, 42, 0.8);
+    border-radius: 14px;
+    padding: 0.6rem 0.8rem;
+    min-width: 130px;
+    box-shadow: 0 10px 26px rgba(0, 0, 0, 0.4);
+}
+
+.webshop-ill .status-card strong {
+    display: block;
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: #e5e7eb;
+}
+
+.webshop-ill .status-card span {
+    display: block;
+    margin-top: 0.25rem;
+    font-size: 0.9rem;
+    font-weight: 800;
+    color: #facc15;
+}
+
 
 .webshop-text h3 {
     font-size: 1.3rem;
