@@ -629,69 +629,120 @@
         </div>
     </section>
 
-    <!-- ZÁRÓ CTA + LÁBLÉC -->
+    <!-- ZÁRÓ CTA + ŰRLAP -->
     <section class="final-cta" id="kapcsolat">
         <div class="final-cta-inner">
-            <h2>Készen állsz, hogy GepEx vigye a csomagjaidat?</h2>
+            <h2>Kérj személyre szabott ajánlatot GepEx futárszolgálattól</h2>
             <p>
-                Írd meg röviden, milyen típusú küldeményeid vannak, és felvesszük veled a kapcsolatot.
-                Együtt kialakítjuk a legjobb szállítási megoldást.
+                Töltsd ki az alábbi űrlapot, és röviden írd le, hogyan használnád a futárszolgáltatást.
+                Visszahívunk vagy e-mailben válaszolunk, és közösen kialakítjuk a számodra ideális megoldást.
             </p>
+
             <div class="final-cta-buttons">
                 <a href="mailto:info@gepardteam.hu" class="btn btn-yellow">Ajánlatot kérek e-mailben</a>
                 <a href="tel:+3613999970" class="btn btn-outline-light">Hívom az ügyfélszolgálatot</a>
             </div>
+
+            <!-- FŐ FORM – EZ LESZ A FORM -->
+            <form class="lead-form" action="https://formspree.io/f/mgvjgonl" method="POST">
+                <!-- Név + Email -->
+                <div class="lead-form-row">
+                    <label>
+                        Neved: *
+                        <input type="text" name="name" required placeholder="Teljes neved">
+                    </label>
+
+                    <label>
+                        Email címed: *
+                        <input type="email" name="email" required placeholder="pelda@email.hu">
+                    </label>
+                </div>
+
+                <!-- Telefon + Cég -->
+                <div class="lead-form-row">
+                    <label>
+                        Telefonszámod:
+                        <input type="tel" name="phone" placeholder="+36...">
+                    </label>
+
+                    <label>
+                        Melyik cégtől érdeklődsz? *
+                        <input type="text" name="company" required placeholder="Cégnév vagy márkanév">
+                    </label>
+                </div>
+
+                <!-- Havi küldeményszám -->
+                <fieldset class="lead-fieldset">
+                    <legend>Hány küldeményt szoktál futárral küldeni havonta átlagosan?</legend>
+                    <div class="lead-options">
+                        <label>
+                            <input type="radio" name="monthly_shipments" value="1-20" required>
+                            1–20 db
+                        </label>
+                        <label>
+                            <input type="radio" name="monthly_shipments" value="21-50">
+                            21–50 db
+                        </label>
+                        <label>
+                            <input type="radio" name="monthly_shipments" value="51-100">
+                            51–100 db
+                        </label>
+                        <label>
+                            <input type="radio" name="monthly_shipments" value="100+">
+                            100 db +
+                        </label>
+                    </div>
+                </fieldset>
+
+                <!-- Mit kérdeznél tőlünk -->
+                <label class="lead-full">
+                    Mit kérdeznél tőlünk, milyen fontos információt osztanál meg velünk? *
+                    <textarea name="message" rows="5" required
+                        placeholder="Például: milyen típusú küldeményeid vannak, honnan-hova mennének, milyen gyakran, stb."></textarea>
+                </label>
+
+                <!-- Checkboxok: mire használod a futárt -->
+                <fieldset class="lead-fieldset">
+                    <legend>Futárt szoktam hívni az alábbi feladatokra:</legend>
+                    <div class="lead-checkboxes">
+                        <label>
+                            <input type="checkbox" name="uses[]" value="cegem_surgos_kuldemenyei">
+                            Cégem sürgős küldeményeit bízom futárra
+                        </label>
+                        <label>
+                            <input type="checkbox" name="uses[]" value="maganszemely_vagyok">
+                            Magánszemélyként szoktam futárt rendelni
+                        </label>
+                        <label>
+                            <input type="checkbox" name="uses[]" value="akkor_hivok_ha_nem_er_ra_kollega">
+                            Akkor hívok azonnali futárt, ha cégünknél nem ér rá egyik kollégánk sem
+                        </label>
+                        <label>
+                            <input type="checkbox" name="uses[]" value="fix_allando_szallitas">
+                            Fix, állandó szállításaimat bízom futárra
+                        </label>
+                        <label>
+                            <input type="checkbox" name="uses[]" value="meg_nem_hasznaltam">
+                            Még nem használtam azonnali futárt, de a jövőben szeretnék
+                        </label>
+                        <label>
+                            <input type="checkbox" name="uses[]" value="webshopom_van">
+                            Webshopom van és szeretném, ha aznap megkapnák a vevőim a termékeimet akár 4 órán belül
+                        </label>
+                    </div>
+                </fieldset>
+
+                <!-- Gomb + megjegyzés -->
+                <div class="lead-form-footer">
+                    <button type="submit" class="btn btn-yellow big">Küldés</button>
+                    <p class="lead-note">
+                        A *-gal jelölt mezők kitöltése kötelező. Az üzenetedet elmentjük, és a megadott elérhetőségeden
+                        keressük meg.
+                    </p>
+                </div>
+            </form>
         </div>
     </section>
-
-    <section class="final-cta" id="kapcsolat">
-    <div class="final-cta-inner">
-        <h2>Készen állsz, hogy GepEx vigye a csomagjaidat?</h2>
-        <p>
-            Írd meg röviden, milyen típusú küldeményeid vannak, és felvesszük veled a kapcsolatot.
-            Együtt kialakítjuk a legjobb szállítási megoldást.
-        </p>
-        <div class="final-cta-buttons">
-            <a href="mailto:info@gepardteam.hu" class="btn btn-yellow">Ajánlatot kérek e-mailben</a>
-            <a href="tel:+3613999970" class="btn btn-outline-light">Hívom az ügyfélszolgálatot</a>
-        </div>
-
-        <!-- KAPCSOLATFELVÉTELI ŰRLAP -->
-       <form action="https://formspree.io/f/mgvjgonl" method="POST">
-            <h3>Küldj üzenetet közvetlenül az oldalról</h3>
-
-            <div class="contact-form-row">
-                <label>
-                    Név*<br />
-                    <input type="text" name="name" required placeholder="Teljes neved" />
-                </label>
-
-                <label>
-                    E-mail cím*<br />
-                    <input type="email" name="email" required placeholder="pelda@email.hu" />
-                </label>
-            </div>
-
-            <label>
-                Telefonszám (nem kötelező)<br />
-                <input type="tel" name="phone" placeholder="+36..." />
-            </label>
-
-            <label>
-                Üzenet*<br />
-                <textarea name="message" rows="5" required placeholder="Miben segíthetünk?"></textarea>
-            </label>
-
-            <button type="submit" class="btn btn-yellow big">Üzenet elküldése</button>
-
-            <p class="contact-form-note">
-                A *-gal jelölt mezők kitöltése kötelező. Az üzenetet e-mailben is megkapjuk, és a lehető
-                leghamarabb visszajelzünk.
-            </p>
-        </form>
-    </div>
-</section>
-
 
     <footer class="site-footer">
         <div class="footer-inner">

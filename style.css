@@ -30,7 +30,6 @@
     --shadow-soft: 0 16px 35px rgba(15, 23, 42, 0.16);
 }
 
-
 body {
     font-family: "Nunito", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
         sans-serif;
@@ -46,7 +45,18 @@ body {
     display: inline-block;
     fill: currentColor;
 }
-/* KAPCSOLAT ŰRLAP */
+
+.icon.xs {
+    width: 1rem;
+    height: 1rem;
+}
+
+.icon.xl {
+    width: 3.2rem;
+    height: 3.2rem;
+}
+
+/* KAPCSOLAT ŰRLAP – (ha később kell külön, most nem használod) */
 
 .contact-form {
     margin-top: 2rem;
@@ -105,15 +115,131 @@ body {
     }
 }
 
+/* LEAD FORM – ÜZLETI AJÁNLAT ŰRLAP */
 
-.icon.xs {
-    width: 1rem;
-    height: 1rem;
+.lead-form {
+    margin-top: 2rem;
+    background: rgba(15, 23, 42, 0.15);
+    border-radius: 16px;
+    padding: 1.8rem 1.6rem;
+    text-align: left;
+    display: grid;
+    gap: 1rem;
 }
 
-.icon.xl {
-    width: 3.2rem;
-    height: 3.2rem;
+.lead-form-row {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.9rem;
+}
+
+.lead-form label,
+.lead-fieldset legend {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #e5e7eb;
+    display: block;
+    margin-bottom: 0.25rem;
+}
+
+.lead-form input[type="text"],
+.lead-form input[type="email"],
+.lead-form input[type="tel"],
+.lead-form textarea {
+    width: 100%;
+    margin-top: 0.25rem;
+    padding: 0.5rem 0.7rem;
+    border-radius: 8px;
+    border: 1px solid rgba(148, 163, 184, 0.7);
+    font: inherit;
+    color: #0f172a;
+    background: #f9fafb;
+}
+
+.lead-form input:focus,
+.lead-form textarea:focus {
+    outline: 2px solid var(--gepex-yellow);
+    outline-offset: 1px;
+    border-color: transparent;
+    background: #ffffff;
+}
+
+.lead-fieldset {
+    border: none;
+    padding: 0;
+    margin: 0.4rem 0 0.2rem;
+}
+
+.lead-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem 1.5rem;
+    margin-top: 0.35rem;
+    font-size: 0.85rem;
+    color: #e5e7eb;
+}
+
+.lead-options label {
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+}
+
+.lead-checkboxes {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.45rem;
+    margin-top: 0.4rem;
+    font-size: 0.85rem;
+    color: #e5e7eb;
+}
+
+.lead-checkboxes label {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.4rem;
+    font-weight: 500;
+}
+
+.lead-checkboxes input[type="checkbox"],
+.lead-options input[type="radio"] {
+    margin-top: 0.1rem;
+    transform: scale(1.05);
+}
+
+.lead-full {
+    display: block;
+}
+
+.lead-form textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+.lead-form-footer {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-top: 0.4rem;
+}
+
+.lead-note {
+    font-size: 0.78rem;
+    color: #e5e7eb;
+}
+
+/* Mobil */
+
+@media (max-width: 700px) {
+    .lead-form-row {
+        grid-template-columns: 1fr;
+    }
+
+    .lead-options {
+        flex-direction: column;
+        align-items: flex-start;
+    }
 }
 
 /* FELSŐ SÁV */
