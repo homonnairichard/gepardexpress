@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8" />
+    <title>GepEx – Gepárd Expressz Futárszolgálat</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="gepardexpress_logo.png" />
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <!-- SVG SPRITE – ikonok -->
+    <svg xmlns="http://www.w3.org/2000/svg" style="display:none">
+        <symbol id="icon-truck" viewBox="0 0 24 24">
+            <rect x="2" y="8" width="11" height="7" rx="1.2"></rect>
+            <path d="M13 9h4.2c.3 0 .6.1.7.4l1.7 3.1c.1.1.1.3.1.5v2H13V9z"></path>
+            <circle cx="7" cy="17.5" r="1.6"></circle>
+            <circle cx="17" cy="17.5" r="1.6"></circle>
+            <path d="M4 10h5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"></path>
+        </symbol>
+
+        <symbol id="icon-clock" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="1.6"></circle>
+            <path d="M12 7.5v4.4l3 1.6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path>
+        </symbol>
+
+        <symbol id="icon-shield" viewBox="0 0 24 24">
+            <path d="M12 3.3l6 2.2v5.8c0 3.5-2.4 6.7-6 7.7-3.6-1-6-4.2-6-7.7V5.5l6-2.2z" fill="none" stroke="currentColor" stroke-width="1.6"></path>
+            <path d="M9 11.5l2 2 4-4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path>
+        </symbol>
+
+        <symbol id="icon-handshake" viewBox="0 0 24 24">
+            <path d="M5 9.5 9 6.7c.6-.4 1.4-.4 2 0l2.4 1.6c.5.4 1.3.4 1.8-.1l1.8-1.6" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"></path>
+            <path d="m4 11 2.2 2.2c.3.3.7.4 1.1.2l1.2-.5c.3-.1.6 0 .8.2l.8.9c.3.4.9.4 1.2 0l.6-.7c.3-.3.8-.3 1.1 0l.8.7c.3.2.7.2 1-.1L20 12" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"></path>
+        </symbol>
+
+        <symbol id="icon-star" viewBox="0 0 24 24">
+            <path d="M12 3.4 14 9l5.1.2-4.1 3.2 1.5 5-4.5-2.8-4.5 2.8 1.5-5-4.1-3.2L10 9z" fill="currentColor"></path>
+        </symbol>
+
+        <symbol id="icon-arrow-up" viewBox="0 0 24 24">
+            <path d="M12 5v14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path>
+            <path d="m6.5 10 5.5-5 5.5 5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path>
+        </symbol>
+    </svg>
+
+    <!-- FELSŐ SÁV -->
+    <header class="topbar">
+        <div class="topbar-inner">
+            <div class="topbar-left">
+                <a href="#" class="logo">
+                    <img src="gepardexpress_logo.png" alt="GepEx – Gepárd Expressz logo">
+                    <span class="logo-text">GepEx Futár</span>
+                </a>
+
+                <nav class="top-links">
+                    <a href="#">Online felület</a>
+                    <a href="#">Üzleti ügyfeleknek</a>
+                </nav>
+            </div>
+
+            <div class="topbar-right">
+                <span class="top-info">
+                    0–24 futárszolgálat • Aznapi kiszállítás
+                </span>
+                <a href="tel:+3613999970" class="top-contact">
+                    06 1 399 9970
+                </a>
+                <a href="mailto:info@gepardteam.hu" class="top-contact">
+                    info@gepardteam.hu
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- FŐ NAVIGÁCIÓ -->
+    <nav class="main-nav">
+        <div class="main-nav-inner">
+            <button class="nav-toggle" id="navToggle" aria-label="Menü">
+                ☰
+            </button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#hero">Főoldal</a></li>
+                <li><a href="#services">Szolgáltatások</a></li>
+                <li><a href="#miert-minket">Miért minket?</a></li>
+                <li><a href="#process">Hogyan működik?</a></li>
+                <li><a href="#fontos-info">GYIK</a></li>
+                <li><a href="#kapcsolat">Kapcsolat</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- HERO SLIDER -->
+    <section class="hero" id="hero">
+        <div class="hero-slider" id="heroSlider">
+            <!-- SLIDE 1 -->
+            <article class="slide active" data-bg="1">
+                <div class="slide-overlay"></div>
+                <div class="slide-content">
+                    <h1>Nagy értékű vagy sürgős csomagod van?</h1>
+                    <p>GepEx futáraink ajtótól ajtóig, kézből kézbe szállítják küldeményeidet Budapesten és országosan.</p>
+                    <div class="slide-buttons">
+                        <a href="#calc" class="btn btn-yellow">Gyors díjkalkuláció</a>
+                        <a href="#kapcsolat" class="btn btn-outline-light">Ajánlatkérés</a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- SLIDE 2 -->
+            <article class="slide" data-bg="2">
+                <div class="slide-overlay"></div>
+                <div class="slide-content">
+                    <h1>Webshopod van? Legyen élmény a kiszállítás!</h1>
+                    <p>Aznapi kézbesítés, utánvét, csomagkövetés – minden egy rendszerben, ha GepExre bízod.</p>
+                    <div class="slide-buttons">
+                        <a href="#results" class="btn btn-yellow">Üzleti megoldások</a>
+                        <a href="#services" class="btn btn-outline-light">Szolgáltatásaink</a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- SLIDE 3 -->
+            <article class="slide" data-bg="3">
+                <div class="slide-overlay"></div>
+                <div class="slide-content">
+                    <h1>0–24 futárszolgálat cégeknek és magánszemélyeknek</h1>
+                    <p>25+ év tapasztalat, több ezer elégedett ügyfél, stabil háttér és emberi ügyintézés.</p>
+                    <div class="slide-buttons">
+                        <a href="#testimonials" class="btn btn-yellow">Ügyfeleink véleménye</a>
+                        <a href="#kapcsolat" class="btn btn-outline-light">Lépj velünk kapcsolatba</a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- SLIDER NYILAK -->
+            <button class="slider-arrow left" id="prevSlide" aria-label="Előző">
+                ‹
+            </button>
+            <button class="slider-arrow right" id="nextSlide" aria-label="Következő">
+                ›
+            </button>
+
+            <!-- PÖTTYÖK -->
+            <div class="slider-dots" id="sliderDots"></div>
+        </div>
+    </section>
+
+    <!-- SÖTÉT KÉK CTA SÁV -->
+    <section class="cta-bar">
+        <div class="cta-inner">
+            <p>
+                Futárt rendelnél azonnal? Hívj minket vagy kérj online ajánlatot, pár percen belül visszajelzünk!
+            </p>
+            <div class="cta-actions">
+                <a href="tel:+3613999970" class="btn btn-light big">Hívás: 06 1 399 9970</a>
+                <a href="#kapcsolat" class="btn btn-outline-light big">Online ajánlatkérés</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- KÉK HERO + KALKULÁTOR -->
+    <section class="big-parcel" id="calc">
+        <div class="big-parcel-inner">
+            <div class="bp-text">
+                <h2>Nagyméretű vagy különleges csomag?<br>Segítünk kiszámolni a fuvardíjat.</h2>
+                <p>
+                    Add meg a legfontosabb adatokat, válaszd ki, milyen típusú küldeményről van szó,
+                    és kapsz egy azonnali, tájékoztató díjat.
+                </p>
+                <ul class="bp-benefits">
+                    <li><svg class="icon"><use href="#icon-clock"></use></svg> 60–120 percen belüli felvétel Budapesten</li>
+                    <li><svg class="icon"><use href="#icon-truck"></use></svg> 1 borítéktól 5 raklapig</li>
+                    <li><svg class="icon"><use href="#icon-shield"></use></svg> Opcionális értékbiztosítás</li>
+                </ul>
+            </div>
+
+            <div class="bp-calculator">
+                <h3>Kalkulátor</h3>
+                <form id="priceCalc">
+
+                    <div class="bp-grid">
+                        <label>
+                            Távolság (km)
+                            <input type="number" id="distInput" min="1" value="20">
+                        </label>
+
+                        <label>
+                            Súly (kg)
+                            <input type="number" id="weightInput" min="1" value="5">
+                        </label>
+                    </div>
+
+                    <p class="bp-label">Válassz csomag típust:</p>
+                    <div class="bp-types">
+                        <label><input type="radio" name="ptype" value="standard" checked> Standard</label>
+                        <label><input type="radio" name="ptype" value="fragile"> Törékeny</label>
+                        <label><input type="radio" name="ptype" value="express"> Expressz</label>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary full">Becsült díj kiszámítása</button>
+                    <p class="bp-result" id="priceResult">Becsült ár: –</p>
+                    <small class="bp-note">A kalkuláció tájékoztató jellegű. Pontos ajánlathoz add le az igényedet.</small>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3 SZOLGÁLTATÁS KÁRTYA -->
+    <section class="services" id="services">
+        <div class="services-inner">
+            <article class="service-card">
+                <div class="service-image img-bp">
+                    <div class="service-badge">
+                        <svg class="icon"><use href="#icon-truck"></use></svg>
+                    </div>
+                </div>
+                <h3>Budapest és agglomeráció</h3>
+                <p>
+                    2–4 órán belüli kézbesítés, akár aznapi indulással. Fix idősávok, pontos érkezés.
+                </p>
+                <a href="#kapcsolat" class="btn btn-outline">Részletek</a>
+            </article>
+
+            <article class="service-card">
+                <div class="service-image img-company">
+                    <div class="service-badge">
+                        <svg class="icon"><use href="#icon-handshake"></use></svg>
+                    </div>
+                </div>
+                <h3>Üzleti partnereknek</h3>
+                <p>
+                    Állandó szállítások, szerződéses kedvezmények, online felület és API kapcsolat webshopokhoz.
+                </p>
+                <a href="#results" class="btn btn-outline">Üzleti megoldások</a>
+            </article>
+
+            <article class="service-card">
+                <div class="service-image img-country">
+                    <div class="service-badge">
+                        <svg class="icon"><use href="#icon-clock"></use></svg>
+                    </div>
+                </div>
+                <h3>Belföld és nemzetközi</h3>
+                <p>
+                    Azonnali indulás az ország bármely pontjára, igény szerint nemzetközi szállítással.
+                </p>
+                <a href="#kapcsolat" class="btn btn-outline">Ajánlatot kérek</a>
+            </article>
+        </div>
+    </section>
+
+    <!-- ORANGE SZEKCIÓ – FUNKCIÓK + STATISZTIKA + ÁRAK + JÁRMŰVEK -->
+    <section class="orange-features">
+        <div class="orange-inner">
+            <div class="orange-left">
+                <ul class="orange-list">
+                    <li>Budapesten 2–4 órán belüli kézbesítés, előre egyeztetett idősávokkal.</li>
+                    <li>Sürgős, akár 2 órán belüli expressz futár, ha azonnal indulnia kell a csomagnak.</li>
+                    <li>Országos lefedettség, azonnali indulással vidéki címekre is.</li>
+                    <li>1 borítéktól akár 5 raklapig vállaljuk a szállítást.</li>
+                    <li>Értékbiztosítás, kézből kézbe kézbesítés és visszaigazolás.</li>
+                    <li>Online megrendelés, átlátható folyamat és valós idejű kommunikáció futárainkkal.</li>
+                    <li>Üzleti ügyfeleknek kedvező, szerződéses díjak és egyedi megoldások.</li>
+                    <li>Webshop integráció, aznapi kiszállítás a vevőidnek Budapesten és agglomerációban.</li>
+                </ul>
+            </div>
+
+            <div class="orange-stats">
+                <p class="orange-top-label">Több mint</p>
+                <p class="orange-big-number" data-counter-target="1254826">+1,254,826 db</p>
+                <p class="orange-sub">
+                    küldemény, amit időben és biztonságban célba juttattunk az elmúlt években.
+                </p>
+
+                <div class="orange-pricing">
+                    <div class="orange-price-card">
+                        <h4>Budapesti azonnali futár:</h4>
+                        <p class="orange-price">2 990 Ft-tól</p>
+                        <p class="orange-note">+ üzemanyag felár + áfa</p>
+                    </div>
+                    <div class="orange-price-card">
+                        <h4>Országos / nemzetközi szállítás:</h4>
+                        <p class="orange-price">140 Ft/km-től</p>
+                        <p class="orange-note">+ üzemanyag felár + áfa</p>
+                    </div>
+                </div>
+
+                <p class="orange-category-title">Milyen járművel visszük a csomagod?</p>
+                <div class="orange-vehicles">
+                    <div class="orange-vehicle">
+                        <div class="orange-vehicle-img motor"></div>
+                        <div class="orange-vehicle-label">MOTOR</div>
+                    </div>
+                    <div class="orange-vehicle">
+                        <div class="orange-vehicle-img auto"></div>
+                        <div class="orange-vehicle-label">AUTÓ</div>
+                    </div>
+                    <div class="orange-vehicle">
+                        <div class="orange-vehicle-img puttony"></div>
+                        <div class="orange-vehicle-label">PUTTONYOS</div>
+                    </div>
+                    <div class="orange-vehicle">
+                        <div class="orange-vehicle-img teher"></div>
+                        <div class="orange-vehicle-label">TEHERAUTÓ</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MIÉRT MINKET BLOKK -->
+    <section class="reasons" id="miert-minket">
+        <div class="reasons-inner">
+            <h2>Miért érdemes a GepEx futárszolgálatot választani?</h2>
+
+            <div class="reasons-grid">
+                <article class="reason-item">
+                    <div class="reason-icon">
+                        <svg class="icon"><use href="#icon-handshake"></use></svg>
+                    </div>
+                    <h3>Megbízható, korrekt partner</h3>
+                    <p>Stabil háttér, átlátható szerződés, valós elérhetőségek – nem tűnünk el a csomaggal.</p>
+                </article>
+
+                <article class="reason-item">
+                    <div class="reason-icon">
+                        <svg class="icon"><use href="#icon-clock"></use></svg>
+                    </div>
+                    <h3>Villámgyors reakció</h3>
+                    <p>Budapesten akár 60 percen belüli felvétel, aznapi kézbesítés webshopoknak is.</p>
+                </article>
+
+                <article class="reason-item">
+                    <div class="reason-icon">
+                        <svg class="icon"><use href="#icon-truck"></use></svg>
+                    </div>
+                    <h3>Rugalmas járműpark</h3>
+                    <p>Motor, kisautó, furgon, teher – mindig az adott feladathoz választjuk a járművet.</p>
+                </article>
+
+                <article class="reason-item">
+                    <div class="reason-icon">
+                        <svg class="icon"><use href="#icon-shield"></use></svg>
+                    </div>
+                    <h3>Biztonság és felelősség</h3>
+                    <p>Kézből kézbe kézbesítés, értékbiztosítás, visszaellenőrizhető kézbesítési adatok.</p>
+                </article>
+
+                <article class="reason-item">
+                    <div class="reason-icon">
+                        <svg class="icon"><use href="#icon-star"></use></svg>
+                    </div>
+                    <h3>Elégedett ügyfelek</h3>
+                    <p>Több száz aktív partner és kiemelkedő értékelések az elmúlt évek szállításaiból.</p>
+                </article>
+
+                <article class="reason-item">
+                    <div class="reason-icon">
+                        <svg class="icon"><use href="#icon-arrow-up"></use></svg>
+                    </div>
+                    <h3>Skálázható megoldás</h3>
+                    <p>A napi 1 csomagtól a nagy volumenű webshop-logisztikáig velünk együtt tudsz nőni.</p>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- AJTÓTÓL AJTÓIG + STATOK -->
+    <section class="door-to-door">
+        <div class="d2d-inner">
+            <div class="d2d-left">
+                <p class="section-kicker">Hogyan szállítjuk?</p>
+                <h2>Ajtótól ajtóig<br>szállítási szolgáltatásaink</h2>
+                <p class="d2d-sub">
+                    A küldemény típusától függetlenül ugyanaz a célunk: gyors, biztonságos és átlátható kézbesítés.
+                </p>
+
+                <div class="d2d-tabs">
+                    <button class="d2d-tab active" data-tab="large">Terjedelmes tárgyak</button>
+                    <button class="d2d-tab" data-tab="docs">Iratok</button>
+                    <button class="d2d-tab" data-tab="webshop">Webshop csomag</button>
+                    <button class="d2d-tab" data-tab="custom">Egyedi igények</button>
+                </div>
+
+                <div class="d2d-panel active" id="tab-large">
+                    <div class="d2d-panel-top">
+                        <div>
+                            <h3>Terjedelmes tárgyak</h3>
+                            <p class="d2d-meta"><strong>Lefedettség:</strong> Budapest + országos</p>
+                            <p class="d2d-meta"><strong>Mit küldhetsz?</strong> Bútorok, nagy műszaki cikkek,
+                                több doboz vagy raklapos áru.</p>
+                        </div>
+                        <ul class="d2d-list">
+                            <li>Ajtótól ajtóig kézbesítés</li>
+                            <li>Raklapkezelés, emelőhátfal</li>
+                            <li>Igény szerint 2 fős rakodás</li>
+                        </ul>
+                    </div>
+                    <a href="#kapcsolat" class="btn btn-yellow">Ajánlatot kérek</a>
+                </div>
+
+                <div class="d2d-panel" id="tab-docs">
+                    <h3>Irat- és szerződésküldés</h3>
+                    <p>Fontos dokumentumok kézbesítése aláírásig, kézbesítési igazolással, akár még aznap.</p>
+                    <a href="#kapcsolat" class="btn btn-yellow">Iratküldés részletei</a>
+                </div>
+
+                <div class="d2d-panel" id="tab-webshop">
+                    <h3>Webshop kiszállítás</h3>
+                    <p>Automatizált rendelésimport, utánvét, értesítések – az élmény része lesz a futár.</p>
+                    <a href="#results" class="btn btn-yellow">Webshop megoldások</a>
+                </div>
+
+                <div class="d2d-panel" id="tab-custom">
+                    <h3>Egyedi logisztikai igények</h3>
+                    <p>Külön útvonalak, dedikált futár, projekt alapú logisztika – kérj egyedi konzultációt.</p>
+                    <a href="#kapcsolat" class="btn btn-yellow">Időpont egyeztetés</a>
+                </div>
+            </div>
+
+            <div class="d2d-stats">
+                <div class="d2d-stat-card">
+                    <span class="d2d-stat-main">99%</span>
+                    <span class="d2d-stat-label">pontossági arány</span>
+                </div>
+                <div class="d2d-stat-card">
+                    <span class="d2d-stat-main">60 perc</span>
+                    <span class="d2d-stat-label">átlagos budapesti felvétel</span>
+                </div>
+                <div class="d2d-stat-card">
+                    <span class="d2d-stat-main">0–24</span>
+                    <span class="d2d-stat-label">telefonos elérhetőség</span>
+                </div>
+                <div class="d2d-stat-card">
+                    <span class="d2d-stat-main">500+</span>
+                    <span class="d2d-stat-label">aktív üzleti partner</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ÉRTÉKELÉSEK -->
+    <section class="testimonials" id="testimonials">
+        <div class="testimonials-inner">
+            <p class="section-kicker">Gyors reakció, rugalmas ügyintézés</p>
+            <h2>Így értékelnek minket ügyfeleink</h2>
+
+            <div class="testi-slider">
+                <button class="testi-arrow left" id="testiPrev">‹</button>
+                <div class="testi-track-wrapper">
+                    <div class="testi-track" id="testiTrack">
+                        <article class="testi-card">
+                            <div class="testi-head">
+                                <h3>Márti</h3>
+                                <div class="testi-stars">
+                                    <svg class="icon xs"><use href="#icon-star"></use></svg>
+                                    <svg class="icon xs"><use href="#icon-star"></use></svg>
+                                    <svg class="icon xs"><use href="#icon-star"></use></svg>
+                                    <svg class="icon xs"><use href="#icon-star"></use></svg>
+                                    <svg class="icon xs"><use href="#icon-star"></use></svg>
+                                </div>
+                            </div>
+                            <p class="testi-date">2023-05-17</p>
+                            <p>Udvarias, segítőkész futár, a nehéz dobozokat is bevitte a címzetthez, minden flottul ment.</p>
+                        </article>
+
+                        <article class="testi-card">
+                            <div class="testi-head">
+                                <h3>Norbert</h3>
+                                <div class="testi-stars">
+                                    <svg class="icon xs"><use href="#icon-star"></use></svg>
+                                    <svg class="icon xs"><use href="#icon-star"></use></svg>
+                                    <svg class="icon xs"><use href="#icon-star"></use></svg>
+                                    <svg class="icon xs"><use href="#icon-star"></use></svg>
+                                    <svg class="icon xs"><use href="#icon-star"></use></svg>
+                                </div>
+                            </div>
+                            <p class="testi-date">2023-06-01</p>
+                            <p>Stabilak, pontosak, hétvégén is tudtak segíteni. Külön plusz pont a kommunikációért.</p>
+                        </article>
+
+                        <article class="testi-card">
+                            <div class="testi-head">
+                                <h3>Erika</h3>
+                                <div class="testi-stars">
+                                    <svg class="icon xs"><use href="#icon-star"></use></svg>
+                                    <svg class="icon xs"><use href="#icon-star"></use></svg>
+                                    <svg class="icon xs"><use href="#icon-star"></use></svg>
+                                    <svg class="icon xs"><use href="#icon-star"></use></svg>
+                                    <svg class="icon xs"><use href="#icon-star"></use></svg>
+                                </div>
+                            </div>
+                            <p class="testi-date">2023-08-22</p>
+                            <p>Webshopos kiszállításainknál ők a kedvenc futárunk – a vevők is dicsérik őket.</p>
+                        </article>
+
+                        <article class="testi-card">
+                            <div class="testi-head">
+                                <h3>Endre</h3>
+                                <div class="testi-stars">
+                                    <svg class="icon xs"><use href="#icon-star"></use></svg>
+                                    <svg class="icon xs"><use href="#icon-star"></use></svg>
+                                    <svg class="icon xs"><use href="#icon-star"></use></svg>
+                                    <svg class="icon xs"><use href="#icon-star"></use></svg>
+                                    <svg class="icon xs"><use href="#icon-star"></use></svg>
+                                </div>
+                            </div>
+                            <p class="testi-date">2023-11-03</p>
+                            <p>A nagyobb projektszállításokat is profin, előre egyeztetett időben intézik.</p>
+                        </article>
+
+                        <article class="testi-card">
+                            <div class="testi-head">
+                                <h3>Jenő</h3>
+                                <div class="testi-stars">
+                                    <svg class="icon xs"><use href="#icon-star"></use></svg>
+                                    <svg class="icon xs"><use href="#icon-star"></use></svg>
+                                    <svg class="icon xs"><use href="#icon-star"></use></svg>
+                                    <svg class="icon xs"><use href="#icon-star"></use></svg>
+                                    <svg class="icon xs"><use href="#icon-star"></use></svg>
+                                </div>
+                            </div>
+                            <p class="testi-date">2024-01-09</p>
+                            <p>Pontos érkezés, mosolygós futár, a csomag sértetlenül ért célba – ennyi kell.</p>
+                        </article>
+                    </div>
+                </div>
+                <button class="testi-arrow right" id="testiNext">›</button>
+            </div>
+
+            <p class="testi-footer">
+                Összesített értékelésünk: 4.7 / 5 – több száz valós visszajelzés alapján.
+            </p>
+        </div>
+    </section>
+
+    <!-- FOLYAMAT LÉPÉSEK -->
+    <section class="process" id="process">
+        <div class="process-inner">
+            <div class="process-steps">
+                <h2>Hogyan kerül a csomagod<br>mielőbb a címzetthez?</h2>
+                <ol>
+                    <li><span>1. lépés</span> Válaszd ki a felvételi és a kézbesítési címet</li>
+                    <li><span>2. lépés</span> Add meg a csomag adatait és típusát</li>
+                    <li><span>3. lépés</span> Becsült árat kapsz, majd véglegesítheted a rendelést</li>
+                    <li><span>4. lépés</span> Futárunk felveszi a küldeményt</li>
+                    <li><span>5. lépés</span> Kézből kézbe kézbesítjük, és értesítést küldünk róla</li>
+                </ol>
+            </div>
+
+            <div class="process-card">
+                <h3>Válassz felvételi és kézbesítési címet</h3>
+                <ul>
+                    <li>Országos lefedettség, Budapesten kiemelten gyors felvétel</li>
+                    <li>Külön kezeljük az érzékeny vagy értékes csomagokat</li>
+                    <li>Rugalmas időpont-egyeztetés, ha változik a terv</li>
+                </ul>
+                <a href="#kapcsolat" class="btn btn-primary">Megrendelem a futárt</a>
+
+                <div class="process-tip">
+                    <strong>Tipp:</strong> minél pontosabban adod meg a cím és csomag adatait,
+                    annál gyorsabban és olcsóbban tudunk dolgozni.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- KIS CTA SÁV -->
+    <section class="safe-cta">
+        <div class="safe-inner">
+            <h2>Biztonságos csomagszállítás háztól házig?</h2>
+            <div class="underline"></div>
+            <div class="safe-buttons">
+                <a href="#kapcsolat" class="btn btn-yellow">Ajánlatot kérek</a>
+                <a href="tel:+3613999970" class="btn btn-link">Beszéljünk telefonon</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- EREDMÉNYEK + WEBSHOP -->
+    <section class="results" id="results">
+        <div class="results-inner">
+            <div class="results-left">
+                <h2>Az elmúlt évek eredményei</h2>
+                <p class="quote">
+                    „Kisvállalkozóként hatalmas könnyebbség, hogy a csomagjaink mindig időben, sérülés nélkül
+                    érnek célba, és a futárok is a cégünk arcát erősítik a vevőink előtt.”
+                    <span class="quote-author">– Ábrahám Csaba, Mesélő Ajándékok</span>
+                </p>
+            </div>
+
+            <div class="results-stats">
+                <div class="results-card">
+                    <span class="results-main">25+ év</span>
+                    <span class="results-label">szakmai tapasztalat</span>
+                </div>
+                <div class="results-card">
+                    <span class="results-main">20 000 000+</span>
+                    <span class="results-label">kézbesített küldemény</span>
+                </div>
+                <div class="results-card">
+                    <span class="results-main">200 000+</span>
+                    <span class="results-label">regisztrált felhasználó</span>
+                </div>
+                <div class="results-card">
+                    <span class="results-main">200+</span>
+                    <span class="results-label">városba szállítunk</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="webshop-box">
+            <div class="webshop-inner">
+             <div class="webshop-ill">
+                <svg class="icon"><use href="#icon-truck"></use></svg>
+                <div class="status-card">
+                    <strong>Webshop futár</strong>
+                    <span>0–24 rendeléskövetés</span>
+                </div>
+            </div>
+
+                <div class="webshop-text">
+                    <h3>Webshopod van?</h3>
+                    <p><strong>Vállalkozó vagy? Webshopot üzemeltetsz?</strong><br>
+                       Cégednek hosszú távú, megbízható csomagküldési megoldásra van szüksége?</p>
+                    <p>
+                        Integrált rendszereinkkel automatizálhatod a kiszállítást: a rendelések
+                        automatikusan beérkeznek hozzánk, mi pedig gondoskodunk az aznapi
+                        futárrendelésről és kiszállításról.
+                    </p>
+                    <a href="#kapcsolat" class="btn btn-primary">Többet az üzleti szolgáltatásokról</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- GYIK / FONTOS INFORMÁCIÓK -->
+    <section class="faq" id="fontos-info">
+        <div class="faq-inner">
+            <p class="section-kicker">Fontos információk</p>
+            <h2>Gyakran ismételt kérdések</h2>
+
+            <div class="faq-list">
+                <article class="faq-item">
+                    <button class="faq-question">
+                        Mennyi idővel előre kell futárt rendelnem?
+                        <span class="faq-toggle">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Budapesti felvétel esetén általában 60–120 percen belül tudunk futárt küldeni.
+                           Vidéki felvételnél a pontos idő a távolságtól és a terheltségtől függ.</p>
+                    </div>
+                </article>
+
+                <article class="faq-item">
+                    <button class="faq-question">
+                        Mekkora és milyen súlyú csomagot vállaltok?
+                        <span class="faq-toggle">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>A kis borítéktól a több raklapos küldeményig mindent megoldunk. Rendhagyó méret vagy
+                           súly esetén kérj egyedi ajánlatot, és közösen kitaláljuk a megoldást.</p>
+                    </div>
+                </article>
+
+                <article class="faq-item">
+                    <button class="faq-question">
+                        Hogyan fizethetek a szállításért?
+                        <span class="faq-toggle">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Magánszemélyként készpénzzel vagy bankkártyával, céges szerződés esetén pedig
+                           átutalással, havi összesített számlával is fizethetsz.</p>
+                    </div>
+                </article>
+
+                <article class="faq-item">
+                    <button class="faq-question">
+                        Mi történik, ha a címzettet nem találja otthon a futár?
+                        <span class="faq-toggle">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Ilyenkor futárunk egyeztet a feladóval. Kérésre újbóli kézbesítést kísérelünk
+                           meg, vagy visszaszállítjuk a csomagot a feladónak.</p>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- KAPCSOLAT + LEAD FORM – CSAK EGY DARAB #kapcsolat! -->
+    <section class="final-cta" id="kapcsolat">
+        <div class="final-cta-inner">
+            <h2>Kérj személyre szabott ajánlatot GepEx futárszolgálattól</h2>
+            <p>
+                Töltsd ki az alábbi űrlapot, és röviden írd le, hogyan használnád a futárszolgáltatást.
+                Visszahívunk vagy e-mailben válaszolunk, és közösen kialakítjuk a számodra ideális megoldást.
+            </p>
+
+            <!-- FŐ FORM – EZ LESZ A FORM (Formspree) -->
+            <form class="lead-form" action="https://formspree.io/f/mgvjgonl" method="POST">
+                <!-- Név + Email -->
+                <div class="lead-form-row">
+                    <label>
+                        Neved: *
+                        <input type="text" name="name" required placeholder="Teljes neved">
+                    </label>
+
+                    <label>
+                        Email címed: *
+                        <input type="email" name="email" required placeholder="pelda@email.hu">
+                    </label>
+                </div>
+
+                <!-- Telefon + Cég -->
+                <div class="lead-form-row">
+                    <label>
+                        Telefonszámod:
+                        <input type="tel" name="phone" placeholder="+36...">
+                    </label>
+
+                    <label>
+                        Melyik cégtől érdeklődsz? *
+                        <input type="text" name="company" required placeholder="Cégnév vagy márkanév">
+                    </label>
+                </div>
+
+                <!-- Havi küldeményszám -->
+                <fieldset class="lead-fieldset">
+                    <legend>Hány küldeményt szoktál futárral küldeni havonta átlagosan?</legend>
+                    <div class="lead-options">
+                        <label>
+                            <input type="radio" name="monthly_shipments" value="1-20" required>
+                            1–20 db
+                        </label>
+                        <label>
+                            <input type="radio" name="monthly_shipments" value="21-50">
+                            21–50 db
+                        </label>
+                        <label>
+                            <input type="radio" name="monthly_shipments" value="51-100">
+                            51–100 db
+                        </label>
+                        <label>
+                            <input type="radio" name="monthly_shipments" value="100+">
+                            100 db +
+                        </label>
+                    </div>
+                </fieldset>
+
+                <!-- Mit kérdeznél tőlünk -->
+                <label class="lead-full">
+                    Mit kérdeznél tőlünk, milyen fontos információt osztanál meg velünk? *
+                    <textarea name="message" rows="5" required
+                        placeholder="Például: milyen típusú küldeményeid vannak, honnan-hova mennének, milyen gyakran, stb."></textarea>
+                </label>
+
+                <!-- Checkboxok: mire használod a futárt -->
+                <fieldset class="lead-fieldset">
+                    <legend>Futárt szoktam hívni az alábbi feladatokra:</legend>
+                    <div class="lead-checkboxes">
+                        <label>
+                            <input type="checkbox" name="uses[]" value="cegem_surgos_kuldemenyei">
+                            Cégem sürgős küldeményeit bízom futárra
+                        </label>
+                        <label>
+                            <input type="checkbox" name="uses[]" value="maganszemely_vagyok">
+                            Magánszemélyként szoktam futárt rendelni
+                        </label>
+                        <label>
+                            <input type="checkbox" name="uses[]" value="akkor_hivok_ha_nem_er_ra_kollega">
+                            Akkor hívok azonnali futárt, ha cégünknél nem ér rá egyik kollégánk sem
+                        </label>
+                        <label>
+                            <input type="checkbox" name="uses[]" value="fix_allando_szallitas">
+                            Fix, állandó szállításaimat bízom futárra
+                        </label>
+                        <label>
+                            <input type="checkbox" name="uses[]" value="meg_nem_hasznaltam">
+                            Még nem használtam azonnali futárt, de a jövőben szeretnék
+                        </label>
+                        <label>
+                            <input type="checkbox" name="uses[]" value="webshopom_van">
+                            Webshopom van és szeretném, ha aznap megkapnák a vevőim a termékeimet akár 4 órán belül
+                        </label>
+                    </div>
+                </fieldset>
+
+                <!-- Gomb + megjegyzés -->
+                <div class="lead-form-footer">
+                    <button type="submit" class="btn btn-yellow big">Küldés</button>
+                    <p class="lead-note">
+                        A *-gal jelölt mezők kitöltése kötelező. Az üzenetedet elmentjük, és a megadott elérhetőségeden
+                        keressük meg.
+                    </p>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <div class="footer-col">
+                <img src="gepardexpress_logo.png" alt="GepEx – Gepárd Expressz" class="footer-logo">
+                <p>
+                    GepEx – Gepárd Expressz: azonnali futárszolgálat Budapestről belföldre és külföldre,
+                    megbízható háttérrel és emberi ügyintézéssel.
+                </p>
+            </div>
+
+            <div class="footer-col">
+                <h3>Szolgáltatások</h3>
+                <ul>
+                    <li><a href="#services">Expressz futár Budapest</a></li>
+                    <li><a href="#services">Országos szállítás</a></li>
+                    <li><a href="#results">Webshop logisztika</a></li>
+                    <li><a href="#process">Átlátható folyamat</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h3>Elérhetőségek</h3>
+                <ul>
+                    <li><a href="tel:+3613999970">06 1 399 9970</a></li>
+                    <li><a href="mailto:info@gepardteam.hu">info@gepardteam.hu</a></li>
+                    <li>0–24 futármegrendelés</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>© <span id="footerYear"></span> GepEx – Gepárd Expressz Futár • Minden jog fenntartva</p>
+            <div class="footer-links">
+                <a href="#">ÁSZF</a>
+                <a href="#">Adatkezelési tájékoztató</a>
+                <a href="#">Süti beállítások</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- VISSZA A TETEJÉRE GOMB -->
+    <button class="back-to-top" id="backToTop" aria-label="Ugrás az oldal tetejére">
+        <svg class="icon"><use href="#icon-arrow-up"></use></svg>
+    </button>
+
+    <script src="script.js"></script>
+</body>
+</html>
